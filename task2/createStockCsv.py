@@ -6,12 +6,12 @@ details, including a GTIN-8 product code, a product description and price.
 import csv
 
 def createStock():
-    print 'STOCK OVERWRITE'
+    print( 'STOCK OVERWRITE')
     #code=input("enter  GTIN-8 product code")
     #description=raw_input("enter product description ")
     #price=raw_input("enter price")
 
-    productsCounter=input("How many product code would you want to add to the csv database?")
+    productsCounter=input("How many product codes would you want to add to the csv database?")
     listToIterateAndWrite=[]
     while productsCounter > 0:
         code=raw_input("enter  GTIN-8 product code")
@@ -21,7 +21,7 @@ def createStock():
         listToIterateAndWrite.append((code,description,price))
 
 
-    print listToIterateAndWrite
+    print( listToIterateAndWrite)
     #https://docs.python.org/3/library/csv.html
     #write rows one by one by iterating the listToIterateAndWrite list
     with open('stock.csv', 'w') as f:
@@ -49,9 +49,9 @@ if __name__ == "__main__":
         totalOrderSum=0
 
         while useInput != 'y':
-            print '\n..NOW..\n'
+            print( '\n..NOW..\n')
             code=raw_input('enter  GTIN-8 product code of product to buy')
-            quantity=input('how many of the '+str()+' you would like to buy?')
+            quantity=input('how many of the '+str(code)+' you would like to buy?')
 
 
 
@@ -62,8 +62,8 @@ if __name__ == "__main__":
             '''Iterate throught the file and find if product code is in the csv'''
             rows=len(lines)
             columns=len(lines[0])
-            print "rows="+str(rows)
-            print "columns="+str(columns)
+            print( "rows="+str(rows))
+            print( "columns="+str(columns))
 
             found=False
             productSelected=0
@@ -76,11 +76,11 @@ if __name__ == "__main__":
                     if c==0:
                         #lines[r][c]='Z'
 
-                        print (lines[r][c])==(code)
+                        print( (lines[r][c])==(code) )
                         if (lines[r][c])==(code):
-                            print "lines matched="+str(lines[r])
-                            print lines[r][c]
-                            print 'code '+str(code)+': found as a product code in the csv'
+                            print( "lines matched="+str(lines[r]) )
+                            print( lines[r][c] )
+                            print( 'code '+str(code)+': found as a product code in the csv' )
                             #break out of the inned for loop
                             found=True
 
@@ -94,7 +94,7 @@ if __name__ == "__main__":
 
             #if code not found inform the user
             if found!=True:
-                print 'NO SUCH PRODUCT CODE EXISTS IN THE CSV'
+                print( 'NO SUCH PRODUCT CODE EXISTS IN THE CSV' )
             else:
                 productsPurchased.append( (productSelected[0], productSelected[1], quantity, productSelected[2], quantity*int(productSelected[2]) ) )
                 totalOrderSum+=quantity*int(productSelected[2])
@@ -108,7 +108,7 @@ if __name__ == "__main__":
 
 
         with open('receipt.csv', 'w') as f:
-            f.write('PCode       Ds Pr Qnt      Total\n')
+            f.write('PCode           Ds     Pr      Qnt             Total\n')
 
         with open('receipt.csv', 'a') as f:
             writer2 = csv.writer(f, delimiter="\t")
@@ -116,7 +116,7 @@ if __name__ == "__main__":
 
         with open('receipt.csv', 'a') as f:
             writer2 = csv.writer(f)#, delimiter=":" not needed
-            f.write('Total Cost of Order             '+str(totalOrderSum))
+            f.write('Total Cost of Order                            '+str(totalOrderSum))
 
 
 
