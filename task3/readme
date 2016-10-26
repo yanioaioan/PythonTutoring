@@ -1,0 +1,5 @@
+1)create a stock.csv containing product info/stock levels etc (either manually or automatically)
+2)create a program that executes essentially bring down the stock levels (sell/buy) (optional)
+3)create a program 'checkStockAndCreateOrders.py' that checks stock levels, and creates a file for re-stock orders so as to top up stock (restockOrders.csv)
+4)create a program 'restock_ExecuteOrders.py' that parses and executes the orders from 'restockOrders.csv' so as to update the stock.csv
+

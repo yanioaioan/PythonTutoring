@@ -1,0 +1,8 @@
+-stock level=current product amount
+-re-order level=level at which re-stocking is needed
+-target stock level=the amount of this type's products after a possible re-stocking
+
+			
+code	   desc   price	  stock level 	re-order level  target stock level 	
+00000001,  p1,   1  	  10				5				20
+00000002,  p2,   2

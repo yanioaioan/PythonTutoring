@@ -1,0 +1,4 @@
+PCode,Ds,Pr,currentStockLevel , reorderLevelLimit, targetStockLevel
+PCode,Ds,Pr,currentStockLevel , reorderLevelLimit, targetStockLevel
+00000001,p1,1,15,5,15
+00000002,p2,2,9,5,15

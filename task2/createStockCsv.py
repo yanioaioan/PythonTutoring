@@ -32,6 +32,7 @@ def createStock():
 
 if __name__ == "__main__":
 
+    #function call to create the stock if chosen to do so
     createStockInput=raw_input("Would you like to create new stock csv file?")
 
     if createStockInput == 'y':
@@ -108,15 +109,15 @@ if __name__ == "__main__":
 
 
         with open('receipt.csv', 'w') as f:
-            f.write('PCode           Ds     Pr      Qnt             Total\n')
+            f.write('PCode,Ds,Pr,Qnt,,Total\n')
 
         with open('receipt.csv', 'a') as f:
-            writer2 = csv.writer(f, delimiter="\t")
+            writer2 = csv.writer(f, delimiter=",")
             writer2.writerows(productsPurchased)
 
         with open('receipt.csv', 'a') as f:
             writer2 = csv.writer(f)#, delimiter=":" not needed
-            f.write('Total Cost of Order                            '+str(totalOrderSum))
+            f.write('Total Cost of Order,,,,, '+str(totalOrderSum))
 
 
 
