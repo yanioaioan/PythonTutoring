@@ -40,16 +40,13 @@ for r in range(rows):
 
         ##if the 4th column < 5th column
         if (lines[r][3])<=(lines[r][4]):
-            #here we update/increase the amount of the currentStockLevel by "targetStockLevel"
 
-            print ("line was="+str(lines[r]))
+            #here we sum the amount  to add to the currentStockLevel to reach "targetStockLevel"
 
             amountToAdd = ( int(lines[r][5]) - int(lines[r][3]) )
 
             #append order (save productCode & amount of products to update this product with)
             orderList.append( ( lines[r][0] ,amountToAdd) )
-
-            print ("line became="+str(lines[r]))
 
 
 ##################################################################################################################################################
@@ -61,7 +58,7 @@ for r in range(rows):
 #write out file (overwriting existing file)
 
 
-print ('NOW update the actual update/overwrite of the stock.csv file ')
+print ('NOW create the restockOrders.csv file to contain the orders to process for restocking at the next step ')
 
 overWriteFilewriterofile  = open('restockOrders.csv', "w")
 overWriteFilewriter = csv.writer(overWriteFilewriterofile, delimiter=',')
