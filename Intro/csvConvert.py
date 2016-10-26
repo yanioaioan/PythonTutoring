@@ -63,6 +63,8 @@ for r in range(rows):
         if c==1:#talking about the 2nd column element
 
             #here we mutate/change/update the element
+
+
             lines[r][c]='A'
             print ("lines changed="+str(lines[r]))
 
@@ -79,10 +81,11 @@ for r in range(rows):
 print ('NOW update the actual update/overwrite of the file ')
 
 overWriteFilewriterofile  = open('MediaResults_copy.csv', "wb")
-overWriteFilewriter = csv.writer(overWriteFilewriterofile, delimiter='\t', quotechar='"')
+overWriteFilewriter = csv.writer(overWriteFilewriterofile, delimiter='\t')
 #write all the lines at once after we have read them and modified them
 overWriteFilewriter.writerows(lines)
 overWriteFilewriterofile.close()
+
 
 
 
@@ -95,7 +98,7 @@ overWriteFilewriterofile.close()
 ifile2  = open('MediaResults_copy.csv', "rb")
 reader2 = csv.reader(ifile2, delimiter=':')#: would not recognise the TAB delimeter properly
 ofile2  = open('updatedTestConvert.csv', "wb")
-writer2 = csv.writer(ofile2, delimiter=':', quotechar='"')
+writer2 = csv.writer(ofile2, delimiter=':')
 
 for row in reader2:
     #print (row)
