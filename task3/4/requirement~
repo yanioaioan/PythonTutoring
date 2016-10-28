@@ -1,0 +1,3 @@
+program to
+ update stock levels following an order and
+ create an order for re-stocking that brings the stock levels for products that are out of stock or below the re-order level up to the target stock level

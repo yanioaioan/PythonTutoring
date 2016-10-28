@@ -3,7 +3,6 @@
 
 import csv
 
-
 ######################################################################################################
 #re-read csv
 r = csv.reader(open('restockOrders.csv'),delimiter=',') # Here your csv file
@@ -35,7 +34,7 @@ print("columns="+str(stockcolumns))
 
 #for each of the rows of restockOrders.csv..look up every row of stock.csv
 #(the 1st column of the restockOrders.csv always need to match the product code of the stock.csv)
-#(the 2nd column of restocklines.csv is just going to update the 4th column (currentStockLevel) of the stock.csv)
+#(the 2nd column is just going to update the 4th column (currentStockLevel) of the stock.csv)
 
 #for each row of restockOrders.csv
 for rr in range(restockrows):

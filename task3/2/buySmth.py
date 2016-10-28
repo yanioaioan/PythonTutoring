@@ -13,7 +13,9 @@ lines = [l for l in r]
 print(lines)
 
 
-'''Iterate throught the file'''
+'''Iterate through the file'''
+
+#Grab the dimensions (rows, columns) of the stock.csv
 rows=len(lines)
 columns=len(lines[0])
 print("rows="+str(rows))
@@ -30,26 +32,33 @@ while (continueBuying == 'y'):
 
     '''update csv file (update the 2nd elements)'''
 
-    #start iterating rows
+    #start iterating rows of stock.csv
     for r in range(rows):
+    #r goes from 0 to ..column number
 
-        #make sure we skip the first line as we only have titles and NOT actual data values
+        #make sure we skip the first line (as we only have titles and NOT actual data values)
         if r!=0:
-            #r goes from 0 to ..column number
+            
             for c in range(columns):
-                #c goes from 0 to ..column number
+                
+		#c goes from 0 to ..column number
                 if c==3:#talking about the 4th column element that contains the currentStockLevel in our csv file
 
+		    #grab the product code of the current row we 're at from stock.csv
                     productCodeofCurrentRow=lines[r][0]
 
+		    #check if this matces what the user selected to buy
                     if (productCodeofCurrentRow)==(pcodeSelectedToBuy):
-                        #here we reducte the amount of the currentStockLevel by "quantity"
+                        
+			#here we reduce the amount of the currentStockLevel by "quantity" (subtractic quantity from currentStockLevel in the stock.csv)
 
                         print ("line was="+str(lines[r]))
 
                         lines[r][c] = str( int(lines[r][c])-quantity )
-                        print ("line became="+str(lines[r]))
+                        
+			print ("line became="+str(lines[r]))
 
+    #ask the user if wants to continue buying stuff 
     continueBuying=raw_input("would you like to continue bying products (y/n)")
 
 ##################################################################################################################################################

@@ -39,15 +39,15 @@ for r in range(rows):
     if r!=0:
 
         ##if the 4th column < 5th column
-        if (lines[r][3])<=(lines[r][4]):
+        if int(lines[r][3]) <= int(lines[r][4]) :
 
+            #print '(%s)<=(%s)'%(lines[r][3],lines[r][4])
             #here we sum the amount  to add to the currentStockLevel to reach "targetStockLevel"
 
             amountToAdd = ( int(lines[r][5]) - int(lines[r][3]) )
 
             #append order (save productCode & amount of products to update this product with)
             orderList.append( ( lines[r][0] ,amountToAdd) )
-
 
 ##################################################################################################################################################
 
