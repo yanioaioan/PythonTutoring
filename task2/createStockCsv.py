@@ -41,7 +41,6 @@ if __name__ == "__main__":
 
     elif createStockInput=='n':
 
-
         continueShopingUserInput='n'
 
         #read csv once before the while loop in lines
@@ -72,15 +71,14 @@ if __name__ == "__main__":
             #initialize 'productSelected' flag to zero
             productSelected=0
 
+            #starting iterating/searching each line/row of the stocks.csv to find matches
             for r in range(rows):
                 #r goes from 0 to 1
                 for c in range(columns):
                     #c goes from 0 to 1
 
-                    #if we are checking 1st element AND the code entered matches, then the item exists in our csv file
+                    #if we are currently at the 1st element (product code in the stock.csv)
                     if c==0:
-
-                        #print( (lines[r][c])==(code) )
 
                         #CHECK IF 'code' ENTERED BY THE USER MATCHES ONE OF THE stock.csv ROWS
                         if (lines[r][c])==(code):
@@ -89,7 +87,7 @@ if __name__ == "__main__":
                             print( 'code '+str(code)+': found as a product code in the csv' )
 
                             #flag the 'found' variable to true,
-                            #to indicate the if statement at line 84 was TRUE
+                            #to indicate the if statement at line 85 was TRUE
                             #(practically this means that the code from the user input
                             #matches one of the lines at our stock.csv file)
 
@@ -98,44 +96,65 @@ if __name__ == "__main__":
                             #store row of the product match
                             productSelected=lines[r]
 
-                            #break out of the inner for loop: (line 76) 'for c in range(columns):'
+                            #break out of the inner for loop: (line 78) 'for c in range(columns):'
+                            #as we don't need to iterate through the rest of our stock.csv , as we found
+                            # our match to our code entered by the user
                             break;
 
 
                 if found==True:
-                    #break out of the outter for loop: (line 74) 'for r in range(rows):'
-                    #and continue executing code from line 109 onwards
+                    #break out of the outter for loop: (line 76) 'for r in range(rows):'
+                    #and continue executing code from line 111 onwards
                     break;
 
-            #if code from the user input not found in our stock.csv, then inform the user
-            if found!=True:
-                print( 'NO SUCH PRODUCT CODE EXISTS IN THE CSV' )
-            else:
-                #otherwise append to the productsPurchased list,
-                #the 'productSelected' which contains the row from the stocks.csv file that matched the user input
+            #if statement at line 84 was TRUE
+            if found==True:
+
+                #append to the productsPurchased list, the 'productSelected' which contains the row from the stocks.csv file that matched the user input
                 productsPurchased.append( (productSelected[0], productSelected[1], quantity, productSelected[2], quantity*int(productSelected[2]) ) )
 
                 #sum the total cost so far
                 totalOrderSum=totalOrderSum+quantity*int(productSelected[2])
 
+            #otherwise if code from the user input NOT found in our stock.csv, then inform the user
+            else:
+                print( 'NO SUCH PRODUCT CODE EXISTS IN THE CSV' )
+
 
             #ask the user if wants to continue shopping or not
             continueShopingUserInput=raw_input('are you done bying stuff products? (y/n)')
 
-        #while loop ends
+        #while loop ends here
         #now print the receipt
 
 
-        with open('receipt.csv', 'w') as f:
-            f.write('PCode,Ds,Pr,Qnt,,Total\n')
+        #ONE WAY OF OPENING FILES & WRITING TO THEM
 
-        with open('receipt.csv', 'a') as f:
-            writer2 = csv.writer(f, delimiter=",")
-            writer2.writerows(productsPurchased)
 
-        with open('receipt.csv', 'a') as f:
-            writer2 = csv.writer(f)#, delimiter=":" not needed
-            f.write('Total Cost of Order,,,,, '+str(totalOrderSum))
+        f  = open('receipt.csv', "w")
+        f.write('PCode,Ds,Pr,Qnt,,Total\n')
+        f.close()
+
+        f  = open('receipt.csv', "a")
+        writer2 = csv.writer(f, delimiter=',')
+        writer2.writerows(productsPurchased)
+        f.close()
+
+        f  = open('receipt.csv', "a")
+        f.write('Total Cost of Order,,,,, '+str(totalOrderSum))
+
+        #OR ANOTHER WAY OF OPENING FILES & WRITING TO THEM
+
+        #        with open('receipt.csv', 'w') as f:
+        #            f.write('PCode,Ds,Pr,Qnt,,Total\n')
+
+        #        with open('receipt.csv', 'a') as f:
+        #            writer2 = csv.writer(f, delimiter=",")
+        #            print 'productsPurchased'%(productsPurchased)
+        #            writer2.writerows(productsPurchased)
+
+        #        with open('receipt.csv', 'a') as f:
+        #            f.write('Total Cost of Order,,,,, '+str(totalOrderSum))
 
     else:
         print('unrecognised input')
